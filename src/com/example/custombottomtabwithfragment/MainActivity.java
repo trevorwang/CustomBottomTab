@@ -18,6 +18,7 @@ public class MainActivity extends FragmentActivity {
 	public static final String TAB_FIFTH = "5th";
 	private FragmentManager mFragmentManager;
 	private FragmentTabHost mTabHost;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup(this, mFragmentManager, R.id.realtabcontent);
-		
+
 		Bundle args = new Bundle();
 		args.putString(KEY_NAME, "Hello World!!");
 		mTabHost.addTab(createSpec(TAB_FIRST, TAB_FIRST, android.R.drawable.ic_dialog_alert), SimpleFragment.class, args);
@@ -33,7 +34,7 @@ public class MainActivity extends FragmentActivity {
 		args = new Bundle();
 		args.putString(KEY_NAME, "World");
 		mTabHost.addTab(createSpec(TAB_SECOND, TAB_SECOND, android.R.drawable.ic_dialog_email), SimpleFragment.class, args);
-		
+
 		args = new Bundle();
 		args.putString(KEY_NAME, "TAB_THIRD");
 		mTabHost.addTab(createSpec(TAB_THIRD, TAB_THIRD, android.R.drawable.ic_dialog_info), SimpleFragment.class, args);
@@ -41,22 +42,24 @@ public class MainActivity extends FragmentActivity {
 		mTabHost.addTab(createSpec(TAB_FIFTH, TAB_FIFTH, android.R.drawable.ic_dialog_dialer), SimpleFragment.class, null);
 	}
 
-	
 	/**
-	 * 创建Tab按钮
+	 * Create Custom Tab
+	 * 
+	 * You can change the R.layout.tab_indicator to any kind of layout as you
+	 * like.
+	 * 
 	 * 
 	 * @param tag
 	 * @param label
 	 * @param resId
 	 * @return
 	 */
-	private TabSpec createSpec( String tag, String label, int resId) {
+	private TabSpec createSpec(String tag, String label, int resId) {
 		View spec = View.inflate(this, R.layout.tab_indicator, null);
 		ImageView icon = (ImageView) spec.findViewById(R.id.icon);
 		TextView title = (TextView) spec.findViewById(R.id.title);
 		icon.setImageResource(resId);
 		title.setText(label);
-		spec.setTag(tag); // 用来判断是否是当前tab
 		return mTabHost.newTabSpec(tag).setIndicator(spec);
 	}
 }
