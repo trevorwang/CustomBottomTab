@@ -48,7 +48,7 @@ CustomBottomTab
 	```
 3. Transfer data to target `fragment`
 
-	```
+	```java
 		Bundle args = new Bundle();
 		args.putString(KEY_NAME, "Hello World!!");
 		mTabHost.addTab(createSpec(TAB_FIRST, TAB_FIRST, android.R.drawable.ic_dialog_alert), SimpleFragment.class, args);
@@ -56,7 +56,7 @@ CustomBottomTab
 
 4.	Get the Argument you transfered to the `fragment`
 
-	```
+	```java
 	private String mTitle;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
