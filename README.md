@@ -1,12 +1,12 @@
-CustomBottomTab
-===============
-
-## Custom your tab's layout as you like
+---
+layout: post
+title: Custom your tab layout as you like
+categories: Android
+tags: [Android, Tab, Fragment]
+---
 
 1. Change the xml content as what you want
 
-	```xml
-	<?xml version="1.0" encoding="utf-8"?>
 	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="0dip"
 	    android:layout_height="48dip"
@@ -32,11 +32,9 @@ CustomBottomTab
 	        android:textColor="@android:color/white" />
 
 	</RelativeLayout>
-	```
 
 2. Change the java code at add tab to tabhost
 
-	```java
 		private TabSpec createSpec(String tag, String label, int resId) {
 			View spec = View.inflate(this, R.layout.tab_indicator, null);
 			ImageView icon = (ImageView) spec.findViewById(R.id.icon);
@@ -45,32 +43,27 @@ CustomBottomTab
 			title.setText(label);
 			return mTabHost.newTabSpec(tag).setIndicator(spec);
 		}
-	```
+
 3. Transfer data to target `fragment`
 
-	```java
 		Bundle args = new Bundle();
 		args.putString(KEY_NAME, "Hello World!!");
 		mTabHost.addTab(createSpec(TAB_FIRST, TAB_FIRST, android.R.drawable.ic_dialog_alert), SimpleFragment.class, args);
-	```
 
 4.	Get the Argument you transfered to the `fragment`
 
-	```java
-	private String mTitle;
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Bundle args = getArguments();
-		if(args != null) {
-			mTitle = args.getString(MainActivity.KEY_NAME);
+		private String mTitle;
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			Bundle args = getArguments();
+			if(args != null) {
+				mTitle = args.getString(MainActivity.KEY_NAME);
+			}
 		}
-	}
-	```
 
 ##	Change the tab‘s position
 
-```xml
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
@@ -90,4 +83,3 @@ CustomBottomTab
 	        android:layout_width="match_parent"
 	        android:layout_height="56dp"/>
 	</LinearLayout>
-```
